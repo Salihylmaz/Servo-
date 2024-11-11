@@ -5,16 +5,19 @@
 #include <math.h>
 
 Servo myservo;  //Servo objesi. Kontrol etmek icin
-
-int pos = 0; 
+Servo myservo2; //2 servo olunca ayri objelerden kontrol ediyoruz
+//int pos = 0; 
 
 float x = 0;
-float y = 10;
+float y =90;
+int yon =1;
+//float y = 10;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   myservo.attach(9); // 9 da bagladigimizi dedik
+  myservo2.attach(10); // 2.servo 10 da
 }
 
 void loop() {
@@ -35,25 +38,26 @@ void loop() {
     delay(15);
   }
   */
-  float aci = yone_dogru(0,0,x,y);
+  float x_acisi = x_ekseni_hesapla(0,x);
+  float y_acisi = y_ekseni_hesapla(0,0);
 
-  //float aci = 0;
-  //aci_hesapla(0,0,30,40,aci);
   delay(100);
-  Serial.println(aci);
-  myservo.write(aci);
-  
-  if(x<100000)
-    x += x+ 50;
-  else {
-    x = 0;
-
+  Serial.println(x_acisi);
+  myservo.write(x_acisi);
+  myservo2.write(y_acisi);
+  x += yon * 10;
+  if( x >= 180){
+    yon = -1;
   }
-  
- /*
-  myservo.write(0);
-  delay(700);
-  myservo.write(170);
-  delay(700);
-  */
+  else if(x <= 0){
+    yon = 1;
+  }
+  y += yon * 5;
+  if( y >= 180){
+    yon = -1;
+  }
+  else if(y <= 0){
+    yon = 1;
+  }
+
 }
