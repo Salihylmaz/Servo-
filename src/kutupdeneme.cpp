@@ -8,7 +8,6 @@ float yone_dogru(float xMotor, float yMotor, float xHedef, float yHedef){
     float deltaX = xHedef-xMotor;
     aci = atan2(deltaY,deltaX) * (180 / M_PI);
     return aci;
-
 }
 
 
@@ -32,20 +31,8 @@ float y_ekseni_hesapla(float yAnten, float yHedef){
     return deltaY;    
 }
 
-float z_ekseni_hesapla(float zAnten, float zHedef){
-    //Simdiki servoda test edilemeyecegi icin sonra bakılacak
-    float deltaZ;
-    deltaZ = zHedef - zAnten;
-    return deltaZ;    
-}
-
 float aci_bul(float deltaX, float deltaY){
     float aci; 
     aci = atan2(deltaY,deltaX) * (180 / M_PI); //arctan ile iki nokta arasındaki aciyi buluyoruz
     return aci; 
-}
-
-
-float aci_bul_3boyutlusu(float deltaX, float deltaY,float deltaZ){
-    //Sonra bakilacak 
 }
